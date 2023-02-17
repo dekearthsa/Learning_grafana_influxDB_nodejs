@@ -1,0 +1,47 @@
+{
+    "table":1,
+    "generatorID":"generator1",
+    "lat":13.767765,
+    "lon":100.541950,
+    "value":12
+}
+
+
+{
+    "table":1,
+    "generatorID":"generator1",
+    "lat": 13.792775,
+    "lon":100.497574,
+    "value":50
+}
+
+
+
+{
+    "taceId": "123",
+    "uptime": 16754935665,
+    "msgType": "real",
+    "msgEncrpt": "none",
+    "apTime": 167949340,
+    "msgDirct": "report",
+    "msgId": 0,
+    "msgParam":{
+        "subCmd": "report",
+        "dataEncrpt": "none",
+        "subType": "uploadData",
+        "apUid": "ffff3da",
+        "msUid": "4f03848a",
+        "value": 30
+    },
+    "localtion":{
+        "building": "A",
+        "floor": "15"
+    },
+    "apUid":"ffff3da",
+    "msgUid": "ffff3da",
+    "msgPriority": "normal",
+    "msgCmd": "ms",
+    "deviceName": "aiq",
+    "deviceAlias": "4F03848A",
+    "deviceaddr": "Bangkok 1020, Thailand"
+}

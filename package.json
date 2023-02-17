@@ -1,0 +1,19 @@
+{
+  "name": "mqtt_service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.33.1",
+    "@influxdata/influxdb-client-apis": "^1.33.1",
+    "dotenv": "^16.0.3",
+    "influx": "^5.9.3",
+    "mqtt": "^4.3.7",
+    "prisma": "^4.9.0"
+  }
+}

@@ -1,0 +1,86 @@
+version: "3.8"
+
+services:
+  ## SQL DB ##
+  # mysql:
+  #     image: mysql:8.0
+  #     container_name: mysql
+  #     restart: always
+  #     cap_add:
+  #       - SYS_NICE
+  #     environment:
+  #       - MYSQL_DATABASE=quotes
+  #       - MYSQL_USER=admin
+  #       - MYSQL_PASSWORD=admin
+  #       - MYSQL_ROOT_PASSWORD=admin
+  #     volumes:
+  #       - mysql-data:/var/lib/mysql
+  #     ports:
+  #       - 3306:3306
+  #     networks:
+  #       - external-db
+
+
+  ## MySql GUI ##
+  # phpmyadmin:
+  #   image: phpmyadmin:5.2.0
+  #   container_name: PhpMyAdmin   
+  #   restart: always
+  #   ports:
+  #     - 5013:80
+  #   environment:
+  #     - PMA_ARBITRARY=1
+  #   networks:
+  #       - external-db
+
+  ## Realtime db ##
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - '8086:8086'
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=db0
+      - INFLUXDB_ADMIN_USER=${INFLUXDB_USERNAME}
+      - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_PASSWORD}
+    networks:
+      - external-db
+
+  ## Monitoing ## 
+  grafana:
+    image: grafana/grafana:8.4.3
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana-provisioning/:/etc/grafana/provisioning
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    networks:
+        - external-db
+
+  ## Backend ## 
+  # mqtt:
+  #   container_name: "mqtt_service"
+  #   restart: always
+  #   build:
+  #     context: ./mqtt_service
+  #   ports:
+  #     - 8000:8000
+  #   networks:
+  #     - external-db
+
+
+volumes:
+  influxdb-storage:
+  grafana-storage:
+  # mysql-data:
+
+networks:
+  external-db:
+    external: true
+    driver: bridge

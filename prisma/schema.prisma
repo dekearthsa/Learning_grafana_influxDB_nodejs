@@ -1,0 +1,17 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://admin:admin@localhost:3306/quotes"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Testing_mqtt {
+  id Int @id @default(autoincrement())
+  num Int
+  create_Date DateTime @default(now())
+}
